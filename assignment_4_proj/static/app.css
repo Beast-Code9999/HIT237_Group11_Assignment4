@@ -43,7 +43,7 @@ body {
     align-items: center;
 }
 .header__img {
-    width: 20rem;
+    width: 10rem;
     margin-right: 20px;
 }
 .navigation {
@@ -106,4 +106,8 @@ body {
 .des p {
     margin-top: 50px;
     font-size: 20px;
+}
+
+.header__logo div {
+    font-weight: bold;
 }
