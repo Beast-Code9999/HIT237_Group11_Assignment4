@@ -7,14 +7,14 @@ def home(request):
 
 def project_details(request, slug):
     try: 
-        return render(request, "assignment2_app/projectDetails.html")
+        return render(request, "assignment_4_app/projectDetails.html")
     except:
         return HttpResponseNotFound("This link is not supported")
 
 # http://127.0.0.1:8000/project-list
 def project_list(request):
     try: 
-        return render(request, "assignment2_app/projectList.html")
+        return render(request, "assignment_4_app/projectList.html")
     except:     
         return HttpResponseNotFound("This link is not supported")
 
@@ -22,6 +22,6 @@ def project_list(request):
 # http://127.0.0.1:8000/about
 def about(request):
     try:
-        return render(request, "assignment2_app/about.html")
+        return render(request, "assignment_4_app/about.html")
     except:
         return HttpResponseNotFound("This link is not supported")
