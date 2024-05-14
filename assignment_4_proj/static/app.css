@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #770577;
+    --color-primary: #3C558B;
     --color-secondary: white;
     --color-dark-blue: #4d5c76;
     --color-grey: #e7e7e7;
@@ -43,7 +43,8 @@ body {
     align-items: center;
 }
 .header__img {
-    width: 10rem;
+    width: 20rem;
+    margin-right: 20px;
 }
 .navigation {
     display: flex;
@@ -90,4 +91,19 @@ body {
 }
 .margin-bottom-small {
     margin-bottom: 1rem;
+}
+
+.image {
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 30px;
+}
+
+.des p {
+    margin-top: 50px;
+    font-size: 20px;
 }
