@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "app.css"%}">
+    <title>{% block title %}{% endblock %}</title>
+    {% block  css_files %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <a class="link" href="{% url 'home' %}">
+            <div class="header__logo">
+                <img class="header__img" src="{% static "img/hit237_group11_logo.png" %}" alt="Group 11 Logo">
+                <div>GROUP 11</div>
+            </div>
+        </a>
+        <nav class="navigation">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a class="link" href="{% url 'home' %}">Home</a></li>
+                <li class="navigation__item"><a class="link" href="{% url 'project-list' %}">Projects</a></li>
+                <li class="navigation__item"><a class="link" href="{% url 'about' %}">About us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="main">
+        {% block content %} 
+        
+        {% endblock content %}
+    </main>
+
+
+    <footer class="footer">
+        <div>This is the footer: May contain links in the future project</div>
+    </footer>
+</body>
+</html>

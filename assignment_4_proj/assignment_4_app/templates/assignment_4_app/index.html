@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Thesis Website {% endblock %}
+
+{% block css_files %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "assignment2_app/index.css"%}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="title">
+   <h1>About This Website</h1>
+</section>
+
+<img src="{% static "assignment2_app/img/main.jpg" %}" alt="Main" class="image">
+
+<section class="des">
+    <p><strong>     Welcome to the Team 11 Page, your central resource for exploring cutting-edge research initiatives and thesis projects across various disciplines. Our platform bridges ambitious students and distinguished faculty, facilitating access to a wide range of academic investigations and scholarly pursuits.</strong></p>
+    <p><strong>     Whether you are a student seeking a thesis topic, a researcher looking for collaboration opportunities, or an academic enthusiast eager to discover the latest advancements in your field, our comprehensive repository offers detailed insights into each project, including objectives, methodologies, and supervisory details.</strong></p>
+    <p><strong>     Please explore our site for detailed project listings, in-depth analysis, and direct links to project supervisors and research groups. We aim to foster an environment of academic excellence and innovation, empowering students and researchers to contribute significantly to their fields.</strong></p>
+    <p><strong>     Begin your journey by navigating to our Project List to view available research topics or visit our About page to learn more about our dedicated team and academic mission.</strong></p>
+</section>
+{% endblock content %}

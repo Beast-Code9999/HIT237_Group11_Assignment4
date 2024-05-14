@@ -1,0 +1,13 @@
+{% load static %}
+
+<article class="article jason">
+    <div class="profile-header">
+        <h3 class="article__header margin-bottom-small">{{ member.name }} <br> {{ member.id }}</h3>
+    </div>
+    <img class="article__img margin-bottom-small" src="{% static "assignment2_app/img/"|add:member.img %}" alt="{{ member.name }}">
+    <div class="description">
+        <p class="margin-bottom-small"><strong>Course:</strong> {{ member.course }}</p>
+        <p class="margin-bottom-small"><strong>Age:</strong> {{ member.age }}</p>
+        <p class="margin-bottom-small"><strong>Ethnicity:</strong> {{ member.nationality }}</p>
+    </div>
+</article>

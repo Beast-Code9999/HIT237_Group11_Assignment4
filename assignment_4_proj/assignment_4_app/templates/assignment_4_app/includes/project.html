@@ -1,0 +1,10 @@
+<div class="project">
+    <a class="link" href="{% url "project-details" project.slug%}">
+        <h2>{{ project.title }}</h2>
+        <p><strong>Category:</strong> {{ project.category }}</p>
+        <p><strong>Thesis Supervisor:</strong> {{ project.supervisor }}</p>
+        <p><strong>Locations:</strong> {{ project.location }}</p>
+        <p><strong>Fields:</strong> {{ project.fields }}</p>
+        <p><strong>Topic Number:</strong> {{ project.topic_num}}</p>
+    </a>
+</div>
