@@ -1,0 +1,93 @@
+:root {
+    --color-primary: #770577;
+    --color-secondary: white;
+    --color-dark-blue: #4d5c76;
+    --color-grey: #e7e7e7;
+    --color-text-dark: #182620;
+}
+
+/* Boilerplate CSS start */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    font-family: inherit;
+}
+html {
+    font-size: 62.5%;
+    font-family: Arial, sans-serif;
+}
+body {
+    box-sizing: border-box;
+    /* background-color: var(--color-primary); */
+    position: relative;
+    background-color: white;
+}
+
+.header {
+    width: 100%;
+    padding: 2rem 18rem;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.7rem;
+    position: absolute;
+    top: 0;
+}
+.header__logo {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header__img {
+    width: 10rem;
+}
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.navigation__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    list-style-type: none;
+}
+.navigation__item a {
+    color: white;
+}
+.navigation__item {
+    transition: all .3s;
+
+}
+.navigation__item:hover {
+    transform: translateY(-.3rem);
+}
+
+.main {
+    padding: 28rem 14rem 53rem 14rem;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35rem;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.link {
+    text-decoration: none;   
+}
+.margin-bottom-small {
+    margin-bottom: 1rem;
+}
