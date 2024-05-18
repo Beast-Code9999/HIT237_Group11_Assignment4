@@ -4,6 +4,7 @@ from django.db import models
 class Project(models.Model):
     supvervisor = models.CharField(max_length=50)
     title = models.CharField(max_length=100)
+    
 
 class ProjectDetail(models.Model):
     pass
