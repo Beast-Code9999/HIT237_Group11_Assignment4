@@ -2,6 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # Path converters
+    # int: numbers
+    # str: strings
+    # path: whole urls/
+    # slug: hyphen-and_underscores
+    # UUID: Universally unique identifier
     path("", views.home, name="home"),
     # http://127.0.0.1:8000/project-list
     path("project-list/", views.project_list, name="project-list"),
