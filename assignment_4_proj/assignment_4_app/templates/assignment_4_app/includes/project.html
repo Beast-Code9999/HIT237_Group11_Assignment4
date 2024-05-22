@@ -1,5 +1,5 @@
 <div class="project">
-    <a class="link" href="#">
+    <a class="link" href="{% url "project-details" project.topic_num %}">
         <h2>{{ project.title }}</h2>
         <p><strong>Category:</strong> {{ project.category }}</p>
         <p><strong>Thesis Supervisor:</strong> {{ project.supervisor }}</p>

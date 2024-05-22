@@ -8,10 +8,16 @@ def home(request):
     return render(request, "assignment_4_app/index.html")
 
 def project_details(request, slug):
-    try: 
-        return render(request, "assignment_4_app/projectDetails.html")
-    except:
-        return HttpResponseNotFound("This link is not supported")
+    # try: 
+        current_project = Project.objects.get(topic_num = slug)
+ 
+        context = {
+            "project": current_project
+        }
+
+        return render(request, "assignment_4_app/projectDetails.html", context)
+    # except:
+        # return HttpResponseNotFound("This link is not supported")
 
 # http://127.0.0.1:8000/project-list
 def project_list(request):
@@ -19,7 +25,7 @@ def project_list(request):
         projects_list = Project.objects.all()
 
         context = {
-            "projects": projects_list
+            "projects": projects_list,
         }
         return render(request, "assignment_4_app/projectList.html", context)
     except:     
