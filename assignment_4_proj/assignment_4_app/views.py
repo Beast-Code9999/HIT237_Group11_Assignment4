@@ -86,15 +86,18 @@ def Search(request):
         # return HttpResponseNotFound("This link is not supported")
 
 def update_project(request, slug):
-    current_project = get_object_or_404(Project, topic_num=slug)
+    try:
+        current_project = get_object_or_404(Project, topic_num=slug)
 
-    form = ProjectForm(request.POST or None, instance=current_project)
-    if form.is_valid():
-        form.save()
-        return redirect("project-details", slug = slug)
+        form = ProjectForm(request.POST or None, instance=current_project)
+        if form.is_valid():
+            form.save()
+            return redirect("project-details", slug = current_project.topic_num)
 
-    context = {
-        "project": current_project,
-        "form": form,
-    }
-    return render(request, "assignment_4_app/updateProject.html", context)
+        context = {
+            "project": current_project,
+            "form": form,
+        }
+        return render(request, "assignment_4_app/updateProject.html", context)
+    except:
+        HttpResponseNotFound("Something wrong with the link")
