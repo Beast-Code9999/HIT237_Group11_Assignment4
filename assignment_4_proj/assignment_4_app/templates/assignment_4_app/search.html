@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Searched {% endblock %}
+
+{% block css_files %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="{% static "assignment_4_app/search.css"%}"> {% endcomment %}
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+   <h1>You searched for</h1>
+{% if searched %}
+    <h1>You searched for {{ searched }}</h1>
+    {% for project in projects %}
+        {{ project }}
+    {% endfor %}
+{% else %}
+    <h1>No project thesis was searched.</h1>
+{% endif %}
+</section>
+
+
+{% endblock content %}

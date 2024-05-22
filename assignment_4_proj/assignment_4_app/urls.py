@@ -16,4 +16,5 @@ urlpatterns = [
     # http://127.0.0.1:8000/about
     path("about-us/", views.about, name="about"),   
     re_path("manage-project/", views.manage_project, name="manage-project"),
+    path("search/", views.Search, name="search"),
 ]

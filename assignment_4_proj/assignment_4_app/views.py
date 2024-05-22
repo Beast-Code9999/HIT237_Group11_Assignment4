@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from .models import Project
 from .forms import ProjectForm
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -62,3 +63,23 @@ def manage_project(request):
             return render(request, "assignment_4_app/manageProject.html", context)
     except:
         return HttpResponseNotFound("This link is not supported")
+    
+def Search(request):
+    # try:
+        if request.method == "POST":
+            searched = request.POST['searched']
+            projects = Project.objects.filter(
+                Q(title__icontains=searched) |
+                Q(supervisor__username__icontains=searched) |
+                Q(topic_num__icontains=searched)
+                )
+
+            context = {
+                'searched': searched,
+                'projects': projects,
+            }
+            return render(request, "assignment_4_app/search.html", context)
+        else:
+            return render(request, "assignment_4_app/search.html")
+    # except:
+        # return HttpResponseNotFound("This link is not supported")
