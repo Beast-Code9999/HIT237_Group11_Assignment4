@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Manage Project Theses {% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "assignment_4_app/manageProject.css"%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="research-topics-title">Manage Theses</h1>
+    {% if submitted  %}
+        <p>Project Submitted Successfully!</p>
+    {% else %}
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" vsalue="submit" class="btn btn-submit">
+        </form>
+    {% endif %}
+</div>
+{% endblock content %}

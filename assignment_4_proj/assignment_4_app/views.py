@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from .models import Project
+from .forms import ProjectForm
 
 # Create your views here.
 def home(request):
@@ -29,5 +30,29 @@ def project_list(request):
 def about(request):
     try:
         return render(request, "assignment_4_app/about.html")
+    except:
+        return HttpResponseNotFound("This link is not supported")
+
+def manage_project(request):
+    try:
+        submitted = False
+        if request.method == "POST":
+            form = ProjectForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect("/manage-project?submitted=True")
+            else: 
+                return HttpResponse("Something is wrong with the code")
+
+        else:
+            form = ProjectForm()
+
+            if 'submitted' in request.GET:
+                submitted = True
+            context = {
+                "form": form,
+                "submitted": submitted,
+            }
+            return render(request, "assignment_4_app/manageProject.html", context)
     except:
         return HttpResponseNotFound("This link is not supported")

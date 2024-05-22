@@ -13,3 +13,4 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'supervisor', 'topic_num')
     ordering = ('topic_num',)
     search_fields = ('title', 'supervisor')
+

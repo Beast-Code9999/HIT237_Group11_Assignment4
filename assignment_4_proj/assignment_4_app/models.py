@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Supervisor(models.Model):
     first_name = models.CharField("First name(s)", max_length=50, null=True)
@@ -9,10 +10,9 @@ class Supervisor(models.Model):
     def __str__(self):
         return self.staff_id + ": " + self.first_name + " " + self.last_name 
 
-
 # Create your models here.
 class Project(models.Model):
-    supervisor = models.ForeignKey(Supervisor, null=True, on_delete=models.RESTRICT) # one to many relationship, one supervisor can have multiple Projects
+    supervisor = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) # one to many relationship, one supervisor can have multiple Projects
     title = models.CharField(max_length=100, null=True)
     category = models.CharField(max_length=200, null=True)
     topic_num = models.IntegerField("Topic number", null=True)
@@ -42,3 +42,5 @@ class StudentGroup(models.Model):
     def __str__(self):
         return self.name
 
+class ProjectApplication(models.Model):
+    pass
