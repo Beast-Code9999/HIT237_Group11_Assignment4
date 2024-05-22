@@ -5,14 +5,14 @@
 {% block title %} Project List {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "assignment2_app/projectList.css"%}">
+    <link rel="stylesheet" href="{% static "assignment_4_app/projectList.css"%}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <h1 class="research-topics-title">Research Topics</h1>
-    {% for project in projects%}
-        {% include "assignment2_app/includes/project.html" %}
+    {% for project in projects %}
+        {% include "assignment_4_app/includes/project.html" %}
     {% endfor %}
 </div>
 {% endblock content %}

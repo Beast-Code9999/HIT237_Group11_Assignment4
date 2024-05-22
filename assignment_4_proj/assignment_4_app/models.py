@@ -12,16 +12,16 @@ class Supervisor(models.Model):
 
 # Create your models here.
 class Project(models.Model):
-    supervisor = models.ForeignKey(Supervisor, blank=True, null=True, on_delete=models.RESTRICT) # one to many relationship, one supervisor can have multiple Projects
+    supervisor = models.ForeignKey(Supervisor, null=True, on_delete=models.RESTRICT) # one to many relationship, one supervisor can have multiple Projects
     title = models.CharField(max_length=100, null=True)
     category = models.CharField(max_length=200, null=True)
     topic_num = models.IntegerField("Topic number", null=True)
-    location = models.CharField("location name", max_length=100, null=True)
-    research_area = models.CharField("Fields of study", max_length=100, null=True)
+    location = models.CharField("location", max_length=100, null=True)
+    research_areas = models.CharField("Fields of study", max_length=100, null=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
-        return self.title + ", topic Number: " + self.topic_num
+        return self.title + ", topic Number: " + str(self.topic_num)
 
 class Student(models.Model):
     first_name = models.CharField("First name(s)", max_length=50, null=True)

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from .models import Project
 
 # Create your views here.
 def home(request):
@@ -14,7 +15,12 @@ def project_details(request, slug):
 # http://127.0.0.1:8000/project-list
 def project_list(request):
     try: 
-        return render(request, "assignment_4_app/projectList.html")
+        projects_list = Project.objects.all()
+
+        context = {
+            "projects": projects_list
+        }
+        return render(request, "assignment_4_app/projectList.html", context)
     except:     
         return HttpResponseNotFound("This link is not supported")
 
