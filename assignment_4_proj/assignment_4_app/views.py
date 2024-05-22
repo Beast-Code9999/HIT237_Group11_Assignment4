@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from .models import Project
 from .forms import ProjectForm
@@ -15,6 +15,7 @@ def project_details(request, slug):
         context = {
             "project": current_project
         }
+
 
         return render(request, "assignment_4_app/projectDetails.html", context)
     # except:
@@ -83,3 +84,17 @@ def Search(request):
             return render(request, "assignment_4_app/search.html")
     # except:
         # return HttpResponseNotFound("This link is not supported")
+
+def update_project(request, slug):
+    current_project = get_object_or_404(Project, topic_num=slug)
+
+    form = ProjectForm(request.POST or None, instance=current_project)
+    if form.is_valid():
+        form.save()
+        return redirect("project-details", slug = slug)
+
+    context = {
+        "project": current_project,
+        "form": form,
+    }
+    return render(request, "assignment_4_app/updateProject.html", context)

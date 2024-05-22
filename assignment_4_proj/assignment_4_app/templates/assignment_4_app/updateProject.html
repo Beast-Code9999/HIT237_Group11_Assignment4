@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Update Project Theses {% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "assignment_4_app/updateProject.css"%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% comment %} <h1 class="research-topics-title">Update Thesis</h1>
+    {% if submitted  %}
+        <p>Project Submitted Successfully!</p>
+    {% else %}
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" vsalue="submit" class="btn btn-submit">
+        </form>
+    {% endif %} {% endcomment %}
+
+    <h1>Update</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" vsalue="update">
+    </form>
+
+</div>
+{% endblock content %}

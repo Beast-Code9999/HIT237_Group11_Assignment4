@@ -15,6 +15,9 @@ urlpatterns = [
     path("project-details/<slug:slug>/", views.project_details, name="project-details"), # project-details/proj1 etc... using path transformer other e.g. is int or str
     # http://127.0.0.1:8000/about
     path("about-us/", views.about, name="about"),   
-    re_path("manage-project/", views.manage_project, name="manage-project"),
     path("search/", views.Search, name="search"),
+    re_path("manage-project/", views.manage_project, name="manage-project"),
+    re_path(r"^update-project/(?P<slug>\d+)$", views.update_project, name="update-project"),
+
+
 ]
