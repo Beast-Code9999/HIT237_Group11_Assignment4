@@ -15,9 +15,17 @@
    <h1>You searched for</h1>
 {% if searched %}
     <h1>You searched for {{ searched }}</h1>
-    {% for project in projects %}
-        {{ project }}
-    {% endfor %}
+
+    {% if projects %}
+        {% for project in projects %}
+            <a class="link" href="{% url "project-details" project.topic_num %}">
+                {{ project }}
+            </a>
+        {% endfor %}
+    {% else %}
+        Not found
+    {% endif %}
+
 {% else %}
     <h1>No project thesis was searched.</h1>
 {% endif %}
