@@ -24,7 +24,7 @@ def project_details(request, slug):
 # http://127.0.0.1:8000/project-list
 def project_list(request):
     try: 
-        projects_list = Project.objects.all()
+        projects_list = Project.objects.all().order_by("topic_num")
 
         context = {
             "projects": projects_list,
@@ -60,3 +60,4 @@ def Search(request):
             return render(request, "assignment_4_app/search.html")
     # except:
         # return HttpResponseNotFound("This link is not supported")
+
