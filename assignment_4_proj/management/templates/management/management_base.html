@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "base_management.css"%}">
+    <title>{% block title %}{% endblock %}</title>
+    {% block css_files %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <a class="link" href="{% url 'home' %}">
+            <div class="header__logo">
+                <img class="header__img" src="{% static "img/CDU-Logo2.png" %}" alt="Group 11 Logo">
+                <div>CDU</div>
+            </div>
+        </a>
+        <nav class="navigation">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a class="link" href="{% url 'project-list' %}">Projects</a></li>
+                <li class="navigation__item"><a class="link" href="#"></a></li>
+                <li class="navigation__item"><a class="link" href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="main">
+        {% block content %} 
+        
+        {% endblock content %}
+    </main>
+
+
+    <footer class="footer">
+        <div>
+          <h2>UNIVERSITY</h2>  
+          <ul>
+            <li>Address:</li>
+            <li>Phone:</li>
+            <li>Email</li>
+            <li class="navigation__item"><a class="link" href="{% url 'about' %}">About us</a></li>
+          </ul>
+        </div>
+    </footer>
+</body>
+</html>

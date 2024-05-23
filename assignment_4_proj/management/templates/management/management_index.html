@@ -1,0 +1,36 @@
+{% extends "management/management_base.html" %}
+{% load static %}
+
+{% block title %} Management {% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "management_index.css"%}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="title">
+   <h1>About This Website</h1>
+</section>
+
+<section class="section--thesis-management">
+    {% comment %} Where CRUD functionality will be used {% endcomment %}
+    <a href="{% url "manage-project" %}">
+        Manage projects
+    </a>
+</section>
+
+<section class="section--pending">
+    {% comment %} forms for student application pending approval {% endcomment %}
+</section>
+
+<section class="section--user-management">
+    {% comment %} display a list of all users {% endcomment %}
+</section>
+
+<section class="section--student-management">
+    {% comment %} list all students {% endcomment %}
+</section>
+
+{% endblock content %}
