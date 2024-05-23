@@ -13,6 +13,9 @@
     <h1 class="research-topics-title">Manage Theses</h1>
     {% if submitted  %}
         <p>Project Submitted Successfully!</p>
+
+        <a href="{% url "add-project" %}">add another thesis</a>
+        <a href="{% url "manage-project" %}">return to manage project</a>
     {% else %}
         <form action="" method="POST">
             {% csrf_token %}
@@ -21,6 +24,8 @@
 
             <input type="submit" vsalue="submit" class="btn btn-submit">
         </form>
+
+        <a href="{% url "manage-project" %}">return to manage project</a>
     {% endif %}
 </div>
 {% endblock content %}

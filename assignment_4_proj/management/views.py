@@ -1,15 +1,23 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 from .models import Project
 from .forms import ProjectForm
 from django.db.models import Q
+import csv
 
 # Create your views here.
 def index(request):
     return render(request, "management/management_index.html")
 
 def manage_project(request):
-    return render(request, "management/management_project.html")
+    projects_list = Project.objects.all().order_by("topic_num")
+
+    context = {
+        "projects": projects_list
+    }
+
+    return render(request, "management/management_project.html", context)
 
 def add_project(request):
     try:
@@ -18,7 +26,7 @@ def add_project(request):
             form = ProjectForm(request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/add-project?submitted=True")
+                return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
             else: 
                 return HttpResponse("Something is wrong with the code")
 
@@ -43,7 +51,7 @@ def update_project(request, slug):
 
         if form.is_valid():
             form.save()
-            return redirect("project-details", slug = current_project.topic_num)
+            return redirect("manage-project")
 
         context = {
             "project": current_project,
@@ -51,9 +59,25 @@ def update_project(request, slug):
         }
         return render(request, "management/updateProject.html", context)
     except:
-        HttpResponseNotFound("Something wrong with the link")
+        return HttpResponseNotFound("Something wrong with the link")
 
 def delete_project(request, slug):
     current_project = Project.objects.get(topic_num = slug)
     current_project.delete()
-    return redirect("management-project")
+    return redirect("manage-project")
+
+
+def project_csv(request):
+    response = HttpResponse(content_type="text/csv")
+    response["content-Disposition"] = "attachment; filename=projects.csv"
+
+    write = csv.writer(response)
+
+    projects = Project.objects.all()
+
+    write.writerow(['Supervisor', 'Title', 'Category', 'Topic Number', 'Location', 'Research Areas', 'Description'])
+
+    for project in projects:
+        write.writerow([project.supervisor, project.title, project.category, project.topic_num, project.location, project.research_areas, project.description])
+
+    return response
