@@ -8,5 +8,5 @@ urlpatterns = [
     # path: whole urls/
     # slug: hyphen-and_underscores
     # UUID: Universally unique identifier
-    path("", views.home, name="home"),
+    path("account-login/", views.account_login, name="account-login"),
 ]

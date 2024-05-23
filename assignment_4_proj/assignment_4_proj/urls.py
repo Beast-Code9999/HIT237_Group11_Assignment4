@@ -21,5 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("assignment_4_app.urls")),
     path("management/", include("management.urls")),
-    # path("accounts/", include("accounts.urls")),
+    path("accounts/", include('django.contrib.auth.urls')),
+    path("accounts/", include("accounts.urls")),
 ]
+
+admin.site.site_header = "Charles Darwin University, Thesis Administration"
+admin.site.index_title = "Administration section"
