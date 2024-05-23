@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'assignment_4_app',
+    'management',
     'accounts',
+
 ]
 
 # AUTH_USER_MODEL = 'accounts.User'
