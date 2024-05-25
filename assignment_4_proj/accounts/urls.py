@@ -9,4 +9,5 @@ urlpatterns = [
     # slug: hyphen-and_underscores
     # UUID: Universally unique identifier
     path("account-login/", views.account_login, name="account-login"),
+    path("account-logout/", views.account_logout, name="account-logout"),
 ]

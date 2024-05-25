@@ -5,20 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "app.css"%}">
+    <link rel="stylesheet" href="{% static ""%}">
     <title>{% block title %}{% endblock %}</title>
     {% block  css_files %}{% endblock %}
 </head>
 <body>
 
     <main class="main">
-        {% block content %} 
-        
         {% if messages %}
             {% for message in messages %}
-                {{ message }}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
             {% endfor %}
         {% endif %}
+
+        {% block content %} 
+        
+
         
         {% endblock content %}
     </main>
