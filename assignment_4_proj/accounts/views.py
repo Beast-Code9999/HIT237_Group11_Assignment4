@@ -26,7 +26,7 @@ def account_login(request):
             user = authenticate(request, username=user.username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("manage-project")
+                return redirect("management-index")
         
         # If user is not found or authentication fails, display error message
         messages.error(request, "Invalid username/email or password. Try again.")
