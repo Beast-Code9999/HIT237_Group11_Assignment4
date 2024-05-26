@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, Permission
 
 class Command(BaseCommand):
     help = "Class to create groups for users"
