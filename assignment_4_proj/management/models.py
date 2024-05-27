@@ -8,8 +8,8 @@ class Project(models.Model):
     title = models.CharField(max_length=100, null=True)
     category = models.ManyToManyField("Category", blank=True)
     topic_num = models.PositiveIntegerField("Topic number", null=True, unique=True)
-    location = models.CharField("location", max_length=100, null=True)
-    research_areas = models.CharField("Fields of study", max_length=100, null=True)
+    location = models.ManyToManyField("Location", blank=True)
+    research_areas = models.ManyToManyField("ResearchArea", blank=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
@@ -22,14 +22,27 @@ class ProjectChangeRequest(models.Model):
     category = models.ManyToManyField("Category", blank=True)
     topic_num = models.PositiveIntegerField("Topic number", null=True, unique=True)
     location = models.CharField("location", max_length=100, null=True)
-    research_areas = models.CharField("Fields of study", max_length=100, null=True)
+    research_areas = models.ManyToManyField("ResearchArea", blank=True)
     description = models.TextField(blank=True)
-    status = models.CharField(max_length=20, choices=[("pending", "Pending"), ("approved", "Approved"), {"rejected", "Rejected"}], default="pending")
+    # status = models.CharField(max_length=20, choices=[("pending", "Pending"), ("approved", "Approved"), {"rejected", "Rejected"}], default="pending")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # request_type = models.CharField(max_length=30, choices=[('add', 'Add'),('edit', 'Edit'),('delete', 'Delete')])
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+class Location(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+               
+class ResearchArea(models.Model):
+    name = models.CharField(max_length=60)
 
     def __str__(self):
         return self.name

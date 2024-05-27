@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Project, ProjectChangeRequest, Category
+from .models import Project, ProjectChangeRequest, Category, Location, ResearchArea
 
 
 @admin.register(Project)
@@ -18,3 +18,5 @@ class ProjectChangeRequestAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category)
+admin.site.register(Location)
+admin.site.register(ResearchArea)
