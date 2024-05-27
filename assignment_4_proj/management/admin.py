@@ -1,15 +1,17 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Project
+from .models import Project, ProjectChangeRequest
 
-# admin.site.register(Project)
-# admin.site.register(Student)
-# admin.site.register(StudentGroup)
-# admin.site.register(Supervisor)
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('title', 'supervisor', 'topic_num')
+    ordering = ('topic_num',)
+    search_fields = ('title', 'supervisor')
+
+@admin.register(ProjectChangeRequest)
+class ProjectChangeRequestAdmin(admin.ModelAdmin):
     list_display = ('title', 'supervisor', 'topic_num')
     ordering = ('topic_num',)
     search_fields = ('title', 'supervisor')

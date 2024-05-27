@@ -7,36 +7,40 @@ def account_login(request):
     if request.method == "POST":
         login_value = request.POST.get("login_value", "")
         password = request.POST.get("password", "")
-        
-        # print("login_value:", login_value)
-        # print("password:", password)
 
-        # Get the User model
+        print("login_value:", login_value)  # Debug: Print the login_value
+        print("password:", password)  # Debug: Print the password
+
         User_model = get_user_model()
-        
-        # Try to get the user by username
         user = User_model.objects.filter(username=login_value).first()
-        
-        # If user not found by username, try to find by email
+        print("user (by username):", user)  # Debug: Print the user object (if found by username)
+
         if not user:
             user = User_model.objects.filter(email=login_value).first()
-        
-        # If user is found, authenticate and login
+            print("user (by email):", user)  # Debug: Print the user object (if found by email)
+
         if user:
-            user = authenticate(request, username=user.username, password=password)
-            if user is not None:
-                login(request, user)
+            # Check if user is active
+            if not user.is_active:
+                print("User is not active.")
+                messages.error(request, "This account is inactive.")
+                return redirect("account-login")
+
+            # Authenticate user
+            authenticated_user = authenticate(request, username=user.username, password=password)
+            print("authenticated user:", authenticated_user)  # Debug: Print the authenticated user object
+
+            if authenticated_user is not None:
+                login(request, authenticated_user)
                 return redirect("management-index")
-        
-        # If user is not found or authentication fails, display error message
+
         messages.error(request, "Invalid username/email or password. Try again.")
         return redirect("account-login")
+
     else:
         context = {}
         return render(request, "accounts/accounts_login.html", context)
-    
 
 def account_logout(request):
     logout(request)
     return redirect('home')
-                   

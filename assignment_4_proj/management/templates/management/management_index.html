@@ -9,31 +9,47 @@
 
 
 {% block content %}
+{% if user.is_authenticated %}
+    {% if user.user_type == 'unit_coordinator' %}
+        <!-- Content for unit coordinators -->
+        <p>Welcome, Unit Coordinator!</p>
+        <section class="title">
+            <h1>Management and Administration</h1>
+         </section>
+         
+         <section class="section--thesis-management">
+             {% comment %} Where CRUD functionality will be used {% endcomment %}
+             <a href="{% url "manage-project" %}">
+                 Manage projects
+             </a>
+         </section>
+         
+         <section class="section--pending">
+             {% comment %} forms for student application pending approval {% endcomment %}
+             Section Pending
+         </section>
+         
+         <section class="section--user-management">
+             {% comment %} display a list of all users {% endcomment %}
+             User management
+         </section>
+         
+         <section class="section--student-management">
+             {% comment %} list all students {% endcomment %}
+             Student management
+         </section>
+    {% elif user.user_type == 'supervisor' %}
+        <!-- Content for supervisors -->
+        <p>Welcome, Supervisor!</p>
+        <!-- Add more content specific to supervisors -->
+    {% else %}
+        <!-- Default content for other user types or handle appropriately -->
+        <p>You don't have permission to view this page.</p>
+    {% endif %}
+{% else %}
+    <!-- Content for non-authenticated users -->
+    <p>Please log in to view this page.</p>
+{% endif %}
 
-<section class="title">
-   <h1>Management and Administration</h1>
-</section>
-
-<section class="section--thesis-management">
-    {% comment %} Where CRUD functionality will be used {% endcomment %}
-    <a href="{% url "manage-project" %}">
-        Manage projects
-    </a>
-</section>
-
-<section class="section--pending">
-    {% comment %} forms for student application pending approval {% endcomment %}
-    Section Pending
-</section>
-
-<section class="section--user-management">
-    {% comment %} display a list of all users {% endcomment %}
-    User management
-</section>
-
-<section class="section--student-management">
-    {% comment %} list all students {% endcomment %}
-    Student management
-</section>
 
 {% endblock content %}

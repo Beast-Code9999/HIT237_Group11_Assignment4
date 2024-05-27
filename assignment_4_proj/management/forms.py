@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Project
+from .models import Project, ProjectChangeRequest
 
 # Create a form for Project
 class ProjectForm(ModelForm):
@@ -26,3 +26,9 @@ class ProjectForm(ModelForm):
             'research_areas': forms.TextInput(attrs={'class': 'input__text', 'placeholder': "Fields of study"}),
             'description': forms.Textarea(attrs={'class': 'input__textarea', 'placeholder': "Description"}),
         } 
+
+class ProjectChangeRequestForm(ModelForm):
+    class Meta:
+        model = ProjectChangeRequest
+        fields = ["project", "title", "category", "topic_num", "location", "research_areas", "description"]
+        
