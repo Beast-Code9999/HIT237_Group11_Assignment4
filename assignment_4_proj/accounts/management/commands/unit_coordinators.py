@@ -19,8 +19,8 @@ class Command(BaseCommand):
             {
                 'username': 'unit_coordinator',
                 'password': 'password',
-                'first_name': 'group',
-                'last_name': 'eleven',
+                'first_name': 'Group',
+                'last_name': 'Eleven',
                 'email': 'unitcoordinator@gmail.com',
                 'date_joined': timezone.now(),
                 'user_type': 'unit_coordinator'
