@@ -52,6 +52,9 @@ class Command(BaseCommand):
                 'date_joined': timezone.now(),
                 'user_type': 'supervisor'
             }
+
+            # In the future if we want to create more supervisors, we just add these objects here
+
         ]
 
         for supervisor in supervisors_data:
