@@ -11,39 +11,51 @@
 {% block content %}
 
 <a href="{% url "project-csv" %}">Download all thesis topics</a>
-<section class="add">
-    <h1>Adding Thesis</h1>
-    <a href="{% url "add-project" %}">Add a thesis</a>
-</section>
 
-<section class="theses">
-    <h1 class="container__heading">Research Topic</h1>
 
-    {% for project in projects %}
-    <section class="section">
-        <div class="container">
-            <div class="project">
-                <h2 class="project__heading">{{ project.title }}</h2>
-                <p><strong>Category:</strong>
-                    {% for category in project.category.all %}
-                        {{ category.name }}
-                        {% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </p>
-                <p><strong>Topic Number:</strong> {{ project.topic_num }}</p>
-                <p><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
-                <p><strong>Locations:</strong> {{ project.location }}</p>
-                <p><strong>Fields:</strong> {{ project.research_areas }}</p>
-                <p><strong>Description: </strong> {{ project.description|linebreaks }}</p>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-        <a class="link" href="{% url 'update-project' project.topic_num %}"> Update </a>
-        <a class="link" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
-    </section>
-{% endfor %}
-</section>
+{% if user.is_authenticated  %}
+    {% if user.user_type == "unit_coordinator" %}
+        <section class="add">
+            <h1>Adding Thesis</h1>
+            <a href="{% url "add-project" %}">Add a thesis</a>
+        </section>
+        <section class="unit_coordinator">
+            <h1 class="container__heading">Research Topic</h1>
+            {% for project in projects %}
+                <section class="section">
+                    <div class="container">
+                        <div class="project">
+                            <h2 class="project__heading">{{ project.title }}</h2>
+                            <p><strong>Category:</strong>
+                                {% for category in project.category.all %}
+                                    {{ category.name }}
+                                    {% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+                            <p><strong>Topic Number:</strong> {{ project.topic_num }}</p>
+                            <p><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
+                            <p><strong>Locations:</strong> {{ project.location }}</p>
+                            <p><strong>Fields:</strong> {{ project.research_areas }}</p>
+                            <p><strong>Description: </strong> {{ project.description|linebreaks }}</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <a class="link" href="{% url 'update-project' project.topic_num %}"> Update </a>
+                    <a class="link" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
+                </section>
+            {% endfor %}
+        </section>
+    {% endif %}
+    
+    {% if user.user_type == "supervisor" %}
+        changeRequestProjectForm
+    
+    {% endif %}
+    {% else %}
+    Hey, you are not allowed here
+{% endif %}
+
 
 {% endblock content %}
 

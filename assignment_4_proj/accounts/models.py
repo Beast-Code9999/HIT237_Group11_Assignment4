@@ -32,13 +32,13 @@ class User(AbstractUser):
 
 
 class Supervisor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='supervisor')
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='supervisor')
 
     def __str__(self):
         return self.user.username
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student')
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='student')
 
     def __str__(self):
         return self.user.username
