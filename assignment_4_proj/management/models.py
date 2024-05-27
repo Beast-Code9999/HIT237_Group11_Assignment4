@@ -24,10 +24,12 @@ class ProjectChangeRequest(models.Model):
     location = models.CharField("location", max_length=100, null=True)
     research_areas = models.ManyToManyField("ResearchArea", blank=True)
     description = models.TextField(blank=True)
-    # status = models.CharField(max_length=20, choices=[("pending", "Pending"), ("approved", "Approved"), {"rejected", "Rejected"}], default="pending")
+    status = models.CharField(max_length=20, choices=[("pending", "Pending"), ("approved", "Approved"), {"rejected", "Rejected"}], default="pending")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # request_type = models.CharField(max_length=30, choices=[('add', 'Add'),('edit', 'Edit'),('delete', 'Delete')])
+
+    def __str__(self):
+        return f"Change Request for Project: {self.title}, Supervisor: {self.supervisor}"
 
 class Category(models.Model):
     name = models.CharField(max_length=100)

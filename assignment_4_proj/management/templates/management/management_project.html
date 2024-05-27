@@ -10,11 +10,10 @@
 
 {% block content %}
 
-<a href="{% url "project-csv" %}">Download all thesis topics</a>
-
 
 {% if user.is_authenticated  %}
-    {% if user.user_type == "unit_coordinator" %}
+    {% if user.user_type == "unit_coordinator" or user.user_type == "supervisor" %}
+        <a href="{% url "project-csv" %}">Download all thesis topics</a>
         <section class="add">
             <h1>Adding Thesis</h1>
             <a href="{% url "add-project" %}">Add a thesis</a>
@@ -53,20 +52,18 @@
                         </div>
                     </div>
                 </section>
-                <section class="section">
-                    <a class="link" href="{% url 'update-project' project.topic_num %}"> Update </a>
-                    <a class="link" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
-                </section>
+                {% if user.is_authenticated %}
+                    {% if user.user_type == "unit_coordinator" or user == project.supervisor %}
+                        <section class="section">
+                            <a class="link" href="{% url 'update-project' project.topic_num %}"> Update </a>
+                            <a class="link" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
+                        </section>
+                    {% endif %}
+                {% endif %}
+
             {% endfor %}
         </section>
     {% endif %}
-    
-    {% if user.user_type == "supervisor" %}
-        changeRequestProjectForm
-    
-    {% endif %}
-    {% else %}
-    Hey, you are not allowed here
 {% endif %}
 
 

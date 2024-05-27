@@ -5,13 +5,15 @@ from .models import Project, ProjectChangeRequest
 from .forms import ProjectForm, ProjectChangeRequest
 from django.db.models import Q
 import csv
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 
 
 # Create your views here.
 def index(request):
     return render(request, "management/management_index.html")
 
+@login_required
+@user_passes_test(lambda user: user.user_type in ['supervisor', 'unit_coordinator'])
 def manage_project(request):
     projects_list = Project.objects.all().order_by("topic_num")
 
@@ -28,6 +30,7 @@ def add_project(request):
             form = ProjectForm(request.POST)
             if form.is_valid():
                 form.save()
+                submitted = True  # Set submitted to True after successful form submission
                 return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
             else: 
                 return HttpResponse("Project already exist")

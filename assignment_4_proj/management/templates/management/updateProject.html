@@ -9,14 +9,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Update</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+{% if user.is_authenticated %}
+    {% if user.user_type == "unit_coordinator" or user == project.supervisor %}
+        <div class="container">
+            <h1>Update</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+        
+                <input type="submit" vsalue="update">
+            </form>
+        </div>
 
-        <input type="submit" vsalue="update">
-    </form>
+        {% comment %} {{ user.user_type }}
+        {{ project.supervisor }}
+        {{ user }} {% endcomment %}
+    {% else %}
+        <h1>Only the supervisor of this project or admin can update this project </h1>
+    {% endif %}
+{% endif %}
 
-</div>
 {% endblock content %}
