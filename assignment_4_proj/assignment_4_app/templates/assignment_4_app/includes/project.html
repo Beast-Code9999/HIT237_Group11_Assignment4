@@ -2,7 +2,7 @@
     <a class="link" href="{% url "project-details" project.topic_num %}">
         <h2>{{ project.title }}</h2>
         <p><strong>Category:</strong> {{ project.category }}</p>
-        <p><strong>Thesis Supervisor:</strong> {{ project.supervisor }}</p>
+        <p><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
         <p><strong>Locations:</strong> {{ project.location }}</p>
         <p><strong>Fields:</strong> {{ project.research_areas }}</p>
         <p><strong>Topic Number:</strong> {{ project.topic_num}}</p>

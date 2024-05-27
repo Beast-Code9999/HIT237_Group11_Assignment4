@@ -1,7 +1,10 @@
 {% extends "accounts/accounts_base.html" %}
+{% load static %}
 
 {% block title %}Login{% endblock %}
-{% block css_files %}{% endblock %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static "accounts/accounts_login.css" %}">
+{% endblock %}
 
 {% block content %}
     <form action="" method="POST">

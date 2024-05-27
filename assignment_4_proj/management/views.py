@@ -30,7 +30,7 @@ def add_project(request):
                 form.save()
                 return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
             else: 
-                return HttpResponse("Something is wrong with the code")
+                return HttpResponse("Project already exist")
 
         else:
             form = ProjectForm()
