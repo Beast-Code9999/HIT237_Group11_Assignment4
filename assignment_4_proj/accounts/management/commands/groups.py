@@ -11,7 +11,7 @@ class Command(BaseCommand):
         for group in groups:
             Group.objects.get_or_create(name=group)
 
-            # Looped through group and give permissions accordingly
+            # Create groups and permissions
             if group == "unit_coordinator":
                 permissions = [
                     'add_project',

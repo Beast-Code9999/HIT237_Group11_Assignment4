@@ -14,7 +14,7 @@ class Command(BaseCommand):
         # Ensure the supervisor group exists
         supervisor_group, created = Group.objects.get_or_create(name='supervisor')
 
-        # Define your supervisor users data
+        # a list of supervisor objects
         supervisors_data = [
             {
                 'username': 'yakub_sebastian',
