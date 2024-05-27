@@ -1,7 +1,12 @@
 <div class="project">
     <a class="link" href="{% url "project-details" project.topic_num %}">
         <h2>{{ project.title }}</h2>
-        <p><strong>Category:</strong> {{ project.category }}</p>
+        <p><strong>Category:</strong>
+            {% for category in project.category.all %}
+                {{ category.name }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
         <p><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
         <p><strong>Locations:</strong> {{ project.location }}</p>
         <p><strong>Fields:</strong> {{ project.research_areas }}</p>
