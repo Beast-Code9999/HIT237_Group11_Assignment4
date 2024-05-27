@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "app.css"%}">
+    <link rel="stylesheet" href="{% static "assignment_4_app/app.css"%}">
     <title>{% block title %}{% endblock %}</title>
     {% block  css_files %}{% endblock %}
 </head>
@@ -38,14 +38,41 @@
 
 
     <footer class="footer">
-        <div>
-          <h2>UNIVERSITY</h2>  
-          <ul>
-            <li>Address:</li>
-            <li>Phone:</li>
-            <li>Email</li>
-            <li class="navigation__item"><a class="link" href="{% url 'about' %}">About us</a></li>
-          </ul>
+        <div class="first">
+            <div class="container">
+                <h2>UNIVERSITY</h2>
+                <br>
+                <ul>
+                    <li><strong>Address:</strong> [University Address, City, State, Postcode]</li>
+                    <li><strong>Phone:</strong> [Main University Phone Number]</li>
+                    <li><strong>Email:</strong> info@university.edu</li>
+                </ul>
+            </div>
+            <div class="container">
+                <h3>LEGAL AND COMPLIANCE</h3>
+                <ul>
+                    <li><a href="#"><strong>Privacy Policy</strong></a></li>
+                    <li><a href="#"><strong>Terms of Use</strong></a></li>
+                    <li><a href="#"><strong>Accessibility</strong></a></li>
+                    <li><a href="#"><strong>Non-Discrimination Policy</strong></a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <h3>QUICK LINKS</h3>
+                <li><a href="#"><strong>Admissions</strong></a></li>
+                <li><a href="#"><strong>Academics</strong></a></li>
+                <li><a href="#"><strong>Campus life</strong></a></li>
+                <li class="navigation__item"><strong><a class="link" href="{% url 'about' %}">About us</a></strong></li>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="#"><img src="../static/assignment_4_app/img/facebook-white-logo.webp" alt="Facebook icon"></a>
+            <a href="#"><img src="../static/assignment_4_app/img/instagram-white-logo.webp" alt="Instagram icon"></a>
+            <a href="#"><img src="../static/assignment_4_app/img/youtube-white-logo.webp" alt="Youtube icon"></a>
+            <a href="#"><img src="../static/assignment_4_app/img/linkedin-white-logo.webp" alt="Linkedin icon"></a>
+        </div>
+        <div class="accredition">
+            <p>&copy; GROUP 11</p>
         </div>
     </footer>
 </body>
