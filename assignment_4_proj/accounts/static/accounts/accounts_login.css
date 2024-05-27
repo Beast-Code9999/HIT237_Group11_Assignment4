@@ -1,0 +1,76 @@
+:root {
+    --color-primary: #3C558B;
+    --color-secondary: white;
+    --color-dark-blue: #4d5c76;
+    --color-grey: #e7e7e7;
+    --color-text-dark: #182620;
+}
+
+html {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%)
+
+}
+
+.main2 {
+    display: flex;
+    justify-content: center;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+    gap: 30px 0px;
+}
+
+img {
+    width: 700px;
+    height: 700px;
+}
+
+form {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px; 
+    padding: 30px;
+}
+
+.inputs div {
+    display: flex;
+    flex-direction: column;
+    gap: 10pxpx;
+}
+
+.submit {
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    width: 25%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    background-color: rgb(25, 25, 67);
+    color: var(--color-secondary);
+}
+.submit:hover {
+    background-color: var(--color-secondary);
+    color: rgb(25, 25, 67);
+}
+
+.login,
+.pass {
+    width: 385px;
+    height: 30px;
+}

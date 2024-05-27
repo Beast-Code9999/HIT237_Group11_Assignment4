@@ -5,26 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static ""%}">
+    <link rel="stylesheet" href="{% static "accounts/accounts_base.css"%}">
     <title>{% block title %}{% endblock %}</title>
     {% block  css_files %}{% endblock %}
 </head>
 <body>
 
     <main class="main">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+
+        <div class="invalid">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
 
         {% block content %} 
         
 
         
         {% endblock content %}
+
     </main>
 
 
