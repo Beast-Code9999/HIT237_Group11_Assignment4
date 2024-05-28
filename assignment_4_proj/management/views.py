@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from .models import Project, RequestAdd
-from .forms import ProjectForm, SupervisorProjectForm, RequestAddForm
+from .models import Project, RequestAdd, RequestUpdate
+from .forms import ProjectForm, SupervisorProjectForm, RequestAddForm, RequestUpdateForm
 from django.db.models import Q
 import csv
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
@@ -171,6 +171,7 @@ def update_project(request, slug):
     except:
         return HttpResponseNotFound("Something wrong with the link")
 
+# DELETE
 @login_required
 @user_passes_test(lambda user: user.user_type in ['unit_coordinator'])
 def delete_project(request, slug):

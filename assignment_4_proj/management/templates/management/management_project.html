@@ -61,7 +61,7 @@
                     {% endif %}
 
                     {% if user == project.supervisor  %}
-                        update
+                        {% comment %} where update request can be placed in the future {% endcomment %}
                     {% endif %}
                 {% endif %}
 
