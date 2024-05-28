@@ -17,4 +17,7 @@ urlpatterns = [
     path("project-pendings/", views.project_request_list, name="project-pendings"),
     path("project-pendings/approve/<slug>", views.approve_project_request, name="approve-project-request"),
     path("project-pendings/reject/<slug>", views.reject_project_request, name="reject-project-request"),
+    path("project-pendings/update/<slug>", views.update_pending_project, name="update-pending-project"),
+    path("project-pendings/delete/<slug>", views.delete_pending_request, name="delete-pending-project"),
+
 ]

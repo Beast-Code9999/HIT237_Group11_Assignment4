@@ -46,6 +46,9 @@
                     </p>
                     <p class="project__paragraph"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
                 </div>
+                
+                <a href="{% url "update-pending-project" request.topic_num %}">Update pending request</a>
+                <a href="{% url "delete-pending-project" request.topic_num %}">Delete pending request</a>
                 <a href="{% url "approve-project-request" request.topic_num %}">Approve</a>
                 <a href="{% url "reject-project-request" request.topic_num %}">Reject</a>
             {% endfor %}
@@ -84,6 +87,10 @@
                         {% endif %}
                     </p>
                     <p class="project__paragraph"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
+                    {% if user == request.supervisor  %}
+                        <a href="{% url "update-pending-project" request.topic_num %}">Update pending request</a>
+                        <a href="{% url "delete-pending-project" request.topic_num %}">Delete pending request</a>
+                    {% endif %}
                 </div>
             {% endfor %}
         {% endif %}

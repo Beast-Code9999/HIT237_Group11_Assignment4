@@ -17,13 +17,10 @@
                 {% csrf_token %}
                 {{ form.as_p }}
         
-                <input type="submit" vsalue="update">
+                <input type="submit" value="update">
             </form>
         </div>
 
-        {% comment %} {{ user.user_type }}
-        {{ project.supervisor }}
-        {{ user }} {% endcomment %}
     {% else %}
         <h1>Only the supervisor of this project or admin can update this project </h1>
     {% endif %}

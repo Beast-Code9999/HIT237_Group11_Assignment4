@@ -125,17 +125,39 @@ def project_request_list(request):
     
     return render(request, "management/management_project_pendings.html", context)
 
+@login_required
+@user_passes_test(lambda user: user.user_type in ['supervisor','unit_coordinator'])
+def update_pending_project(request, slug):
+    try:
+        current_project = get_object_or_404(RequestAdd, topic_num=slug)
+
+        form = RequestAddForm(request.POST or None, instance=current_project)
 
 
+        if form.is_valid():
+            form.save()
+            return redirect("project-pendings")
 
+        context = {
+            "project": current_project,
+            "form": form,
+        }
+        return render(request, "management/updateProject.html", context)
+    except:
+        return HttpResponseNotFound("Something wrong with the link")
+
+@login_required
+@user_passes_test(lambda user: user.user_type in ['unit_coordinator'])
 def update_project(request, slug):
     try:
         current_project = get_object_or_404(Project, topic_num=slug)
 
-        if request.user.user_type in ["unit_coordinator"]:
-            form = ProjectForm(request.POST or None, instance=current_project)
-        else:
-            form = SupervisorProjectForm(request.POST or None, instance=current_project)
+        form = ProjectForm(request.POST or None, instance=current_project)
+
+        # if request.user.user_type in ["unit_coordinator"]:
+        #     form = ProjectForm(request.POST or None, instance=current_project)
+        # else:
+        #     form = SupervisorProjectForm(request.POST or None, instance=current_project)
 
         if form.is_valid():
             form.save()
@@ -149,10 +171,20 @@ def update_project(request, slug):
     except:
         return HttpResponseNotFound("Something wrong with the link")
 
+@login_required
+@user_passes_test(lambda user: user.user_type in ['unit_coordinator'])
 def delete_project(request, slug):
     current_project = Project.objects.get(topic_num = slug)
     current_project.delete()
     return redirect("manage-project")
+
+@login_required
+@user_passes_test(lambda user: user.user_type in ['supervisor','unit_coordinator'])
+# Note that for unit_coordinators, reject and delete pending request functionally is the same, may differ in the future
+def delete_pending_request(request, slug):
+    current_project = RequestAdd.objects.get(topic_num = slug)
+    current_project.delete()
+    return redirect("project-pendings")
 
 
 def project_csv(request):

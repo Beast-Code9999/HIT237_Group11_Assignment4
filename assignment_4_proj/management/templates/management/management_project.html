@@ -53,11 +53,15 @@
                     </div>
                 </section>
                 {% if user.is_authenticated %}
-                    {% if user.user_type == "unit_coordinator" or user == project.supervisor %}
+                    {% if user.user_type == "unit_coordinator"%}
                         <section class="section">
                             <a class="link link__update" href="{% url 'update-project' project.topic_num %}"> Update </a>
                             <a class="link link__delete" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
                         </section>
+                    {% endif %}
+
+                    {% if user == project.supervisor  %}
+                        update
                     {% endif %}
                 {% endif %}
 
