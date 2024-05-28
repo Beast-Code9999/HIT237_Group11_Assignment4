@@ -4,7 +4,7 @@
 {% block title %} Management {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "management_index.css"%}">
+    <link rel="stylesheet" href="{% static "management/management_index.css"%}">
 {% endblock %}
 
 
@@ -15,21 +15,21 @@
         <p>Welcome back, {{ user.first_name }} {{ user.last_name }}</p>
         <section class="title">
             <h1>Management and Administration</h1>
-         </section>
+        </section>
          
-         <section class="section--thesis-management">
+        <section class="section--thesis-management">
              {% comment %} Where CRUD functionality will be used {% endcomment %}
-             <a href="{% url "manage-project" %}">
-                 Manage projects
-             </a>
-         </section>
+            <a href="{% url "manage-project" %}">
+                Manage projects
+            </a>
+        </section>
          
-         <section class="section--pending">
+        <section class="section--pending">
              {% comment %} forms for student application pending approval {% endcomment %}
-             Section Pending
-         </section>
+            Section Pending
+        </section>
          
-         {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
             {% if user.user_type == "unit_coordinator" %}
                 <section class="section--user-management">
                     {% comment %} display a list of all users {% endcomment %}
@@ -41,7 +41,7 @@
                     Student management
                 </section>
             {% endif %}
-         {% endif %}
+        {% endif %}
 
     {% else %}
         <!-- Default content for other user types or handle appropriately -->

@@ -5,7 +5,7 @@
 {% block title %} Management {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "management_project.css"%}">
+    <link rel="stylesheet" href="{% static "management/management_project.css"%}">
 {% endblock %}
 
 {% block content %}
@@ -25,15 +25,15 @@
                     <div class="container">
                         <div class="project">
                             <h2 class="project__heading">{{ project.title }}</h2>
-                            <p><strong>Category:</strong>
+                            <p class="project__paragraph"><strong>Category:</strong>
                                 {% for category in project.category.all %}
                                     {{ category.name }}
                                     {% if not forloop.last %}, {% endif %}
                                 {% endfor %}
                             </p>
-                            <p><strong>Topic Number:</strong> {{ project.topic_num }}</p>
-                            <p><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
-                            <p><strong>Locations:</strong>
+                            <p class="project__paragraph"><strong>Topic Number:</strong> {{ project.topic_num }}</p>
+                            <p class="project__paragraph"><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
+                            <p class="project__paragraph"><strong>Locations:</strong>
                                 {% for location in project.location.all %}
                                     {{ location.name }}{% if not forloop.last %}, {% endif %}
                                 {% empty %}
@@ -41,22 +41,22 @@
                                 {% endfor %}
                                 </p>
                                 
-                                <p><strong>Fields:</strong>
+                            <p class="project__paragraph"><strong>Fields:</strong>
                                 {% for research_area in project.research_areas.all %}
                                     {{ research_area.name }}{% if not forloop.last %}, {% endif %}
                                 {% empty %}
                                     None
                                 {% endfor %}
-                                </p>
-                            <p><strong>Description: </strong> {{ project.description|linebreaks }}</p>
+                            </p>
+                            <p class="project__paragraph"><strong>Description: </strong> {{ project.description|linebreaks }}</p>
                         </div>
                     </div>
                 </section>
                 {% if user.is_authenticated %}
                     {% if user.user_type == "unit_coordinator" or user == project.supervisor %}
                         <section class="section">
-                            <a class="link" href="{% url 'update-project' project.topic_num %}"> Update </a>
-                            <a class="link" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
+                            <a class="link link__update" href="{% url 'update-project' project.topic_num %}"> Update </a>
+                            <a class="link link__delete" href="{% url 'delete-project' project.topic_num %}"> Delete thesis </a>
                         </section>
                     {% endif %}
                 {% endif %}
