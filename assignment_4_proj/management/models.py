@@ -48,3 +48,14 @@ class ResearchArea(models.Model):
 
     def __str__(self):
         return self.name
+
+class RequestAdd():
+    pass
+
+class RequestUpdate():
+    pass
+
+class RequestDelete():
+    pass
+
+
