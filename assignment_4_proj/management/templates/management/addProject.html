@@ -5,7 +5,7 @@
 {% block title %} Manage Project Theses {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "assignment_4_app/manageProject.css"%}">
+    <link rel="stylesheet" href="{% static "management/addProject.css"%}">
 {% endblock %}
 
 {% block content %}
@@ -13,8 +13,8 @@
     <h1 class="research-topics-title">Manage Theses</h1>
     {% if submitted  %}
         <p>Project Submitted Successfully!</p>
-        <a href="{% url "manage-project" %}">return to manage project</a>
-        <a href="{% url "add-project" %}">add another thesis</a>
+        <a class="link__homepage" href="{% url "manage-project" %}">return to manage project</a>
+        <a class="link__add-project" href="{% url "add-project" %}">add another thesis</a>
         
     {% else %}
         <form action="" method="POST">
