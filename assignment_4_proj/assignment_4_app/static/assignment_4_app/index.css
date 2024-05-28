@@ -1,14 +1,42 @@
 :root {
     --color-primary: #3C558B;
     --color-secondary: white;
-    --color-dark-blue: #4d5c76;
-    --color-grey: #e7e7e7;
+    --color-dark-blue: #1c0e45;
+    --color-grey: #eff0f8;
     --color-text-dark: #182620;
+}
+
+.image {
+    width: 100%;
 }
 
 /* search bar */
 
 .search-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
+
+.search-bar,
+.search-button {
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 30px;
+    border: 0px;
+    margin: 0px;
+}
+
+.search-bar {
+    width: 95.5%;
+    background-color: var(--color-secondary);
+}
+
+.search-button {
+    width: 4%;
+    background-color: var(--color-secondary);
+}
+
+.search-button img {
+    width: 20px;
+}
+
