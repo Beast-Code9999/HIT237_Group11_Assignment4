@@ -105,17 +105,6 @@ a {
     text-decoration: none;
 }
 
-.social-links a img {
-    width: 40px;
-    height: 40px;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
 .footer .first .footer-container li {
     font-size: 20px;
 }
@@ -142,7 +131,6 @@ a {
 }
 
 .first,
-.social-links,
 .accredition {
     margin: 30px;
 }
@@ -154,6 +142,7 @@ a {
 
 .accredition {
     font-size: 20px;
+    margin-top: 50px;
 }
 
 .research-topics-title {

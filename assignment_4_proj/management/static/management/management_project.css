@@ -1,3 +1,12 @@
-.project {
-    background-color: lightblue;
+:root {
+    --color-primary: #3C558B;
+    --color-secondary: white;
+    --color-dark-blue: #1c0e45;
+    --color-grey: #eff0f8;
+    --color-text-dark: #182620;
 }
+
+.section {
+    background-color: var(--color-secondary);
+}
+

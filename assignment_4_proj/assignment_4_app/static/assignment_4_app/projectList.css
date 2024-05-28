@@ -92,3 +92,6 @@
     width: 5rem;
     padding: 10px;
 }
+.search-button:hover {
+    cursor: pointer;
+}

@@ -1,3 +1,30 @@
-.section--thesis-management {
-    background-color: lightblue;
+:root {
+    --color-primary: #3C558B;
+    --color-secondary: white;
+    --color-dark-blue: #1c0e45;
+    --color-grey: #eff0f8;
+    --color-text-dark: #182620;
+}
+
+.section--thesis-management,
+.section--pending,
+.section--user-management,
+.section--student-management {
+    background-color: var(--color-secondary);
+    padding: 20px 40px;
+    color: var(--color-text-dark);
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.03);
+}
+
+.section--thesis-management a {
+    color: var(--color-text-dark);
+    font-weight: bold;
+}
+
+.main2 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
