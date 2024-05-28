@@ -50,12 +50,24 @@ class ResearchArea(models.Model):
         return self.name
 
 class RequestAdd():
-    pass
+    supervisor = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length=100, null=True)
+    category = models.ManyToManyField("Category", blank=True)
+    topic_num = models.PositiveIntegerField("Topic number", null=True, unique=True)
+    location = models.ManyToManyField("Location", blank=True)
+    research_areas = models.ManyToManyField("ResearchArea", blank=True)
+    description = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=[("pending", "Pending"), ("approved", "Approved"), {"rejected", "Rejected"}], default="pending")
+    created_at = models.DateTimeField(auto_now_add=True)
+    approved_at = models.DateTimeField(null=True, blank=True)
 
-class RequestUpdate():
-    pass
+    def __str__(self):
+        return self.title + ", Status: " + str(self.status)
 
-class RequestDelete():
-    pass
+# class RequestUpdate():
+#     pass
+
+# class RequestDelete():
+#     pass
 
 
