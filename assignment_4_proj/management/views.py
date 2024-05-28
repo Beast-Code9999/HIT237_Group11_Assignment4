@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from .models import Project, ProjectChangeRequest
-from .forms import ProjectForm, ProjectChangeRequest
+from .forms import ProjectForm, ProjectChangeRequest, SupervisorProjectForm
 from django.db.models import Q
 import csv
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
@@ -27,16 +27,29 @@ def add_project(request):
     try:
         submitted = False
         if request.method == "POST":
-            form = ProjectForm(request.POST)
-            if form.is_valid():
-                form.save()
-                submitted = True  # Set submitted to True after successful form submission
-                return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
-            else: 
-                return HttpResponse("Project already exist")
-
+            if request.user.user_type in ["unit_coordinator"]: # check if user is unit_coordinator, if so, save ProjectForm
+                form = ProjectForm(request.POST)
+                if form.is_valid():
+                    form.save()
+                    submitted = True  # Set submitted to True after successful form submission
+                    return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
+                else: 
+                    return HttpResponse("Project already exist")
+            else: # else save restricted form (no supervisor field)
+                form = SupervisorProjectForm(request.POST)
+                if form.is_valid():
+                    project = form.save(commit=False)
+                    project.supervisor = request.user
+                    project.save()
+                    form.save_m2m()  # Ensure many-to-many relationships are saved
+                    return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
+                else: 
+                    return HttpResponse("Project already exist")
         else:
-            form = ProjectForm()
+            if request.user.user_type in ["unit_coordinator"]:
+                form = ProjectForm
+            else:
+                form = SupervisorProjectForm
 
             if 'submitted' in request.GET:
                 submitted = True
@@ -52,7 +65,10 @@ def update_project(request, slug):
     try:
         current_project = get_object_or_404(Project, topic_num=slug)
 
-        form = ProjectForm(request.POST or None, instance=current_project)
+        if request.user.user_type in ["unit_coordinator"]:
+            form = ProjectForm(request.POST or None, instance=current_project)
+        else:
+            form = SupervisorProjectForm(request.POST or None, instance=current_project)
 
         if form.is_valid():
             form.save()
