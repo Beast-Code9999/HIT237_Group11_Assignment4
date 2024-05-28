@@ -38,10 +38,11 @@ def add_project(request):
             else: # else save restricted form (no supervisor field)
                 form = SupervisorProjectForm(request.POST)
                 if form.is_valid():
-                    project = form.save(commit=False)
-                    project.supervisor = request.user
-                    project.save()
-                    form.save_m2m()  # Ensure many-to-many relationships are saved
+                    project = form.save(commit=False)  # Save the form without committing to the database
+                    project.supervisor = request.user  # Set the supervisor field to the current user
+                    project.save()  # Save the main instance to the database
+                    form.save_m2m()  # Save the many-to-many relationships
+                    submitted = True  # Set submitted to True after successful form submission
                     return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
                 else: 
                     return HttpResponse("Project already exist")
