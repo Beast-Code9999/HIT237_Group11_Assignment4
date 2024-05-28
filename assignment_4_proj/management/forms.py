@@ -6,9 +6,14 @@ from .models import Project, ProjectChangeRequest
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
+        
         fields = ('supervisor', 'title', 'category', 'topic_num', 'location', 'research_areas', 'description')
+
         widgets = {
             'category': CheckboxSelectMultiple(),  # Use the built-in CheckboxSelectMultiple widget
+            'location': CheckboxSelectMultiple(),
+            'research_areas': CheckboxSelectMultiple(),
+
         }
 
 class ProjectChangeRequestForm(ModelForm):
@@ -17,4 +22,6 @@ class ProjectChangeRequestForm(ModelForm):
         fields = ["project", "title", "category", "topic_num", "location", "research_areas", "description"]
         widgets = {
             'category': CheckboxSelectMultiple(),  # Use the built-in CheckboxSelectMultiple widget
+            'location': CheckboxSelectMultiple(),
+            'research_areas': CheckboxSelectMultiple(),
         }

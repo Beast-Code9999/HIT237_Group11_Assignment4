@@ -10,9 +10,9 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    {% if user.user_type == 'unit_coordinator' %}
+    {% if user.user_type == 'unit_coordinator' or user.user_type == "supervisor" %}
         <!-- Content for unit coordinators -->
-        <p>Welcome, Unit Coordinator!</p>
+        <p>Welcome back, {{ user.first_name }} {{ user.last_name }}</p>
         <section class="title">
             <h1>Management and Administration</h1>
          </section>
@@ -29,19 +29,20 @@
              Section Pending
          </section>
          
-         <section class="section--user-management">
-             {% comment %} display a list of all users {% endcomment %}
-             User management
-         </section>
-         
-         <section class="section--student-management">
-             {% comment %} list all students {% endcomment %}
-             Student management
-         </section>
-    {% elif user.user_type == 'supervisor' %}
-        <!-- Content for supervisors -->
-        <p>Welcome, Supervisor!</p>
-        <!-- Add more content specific to supervisors -->
+         {% if user.is_authenticated %}
+            {% if user.user_type == "unit_coordinator" %}
+                <section class="section--user-management">
+                    {% comment %} display a list of all users {% endcomment %}
+                    User management
+                </section>
+
+                <section class="section--student-management">
+                    {% comment %} list all students {% endcomment %}
+                    Student management
+                </section>
+            {% endif %}
+         {% endif %}
+
     {% else %}
         <!-- Default content for other user types or handle appropriately -->
         <p>You don't have permission to view this page.</p>

@@ -14,13 +14,13 @@ class Command(BaseCommand):
         # Ensure the unit coordinator group exists
         unit_coordinator_group, created = Group.objects.get_or_create(name='unit_coordinator')
 
-        # Define your unit coordinator users data
+        # An arrya of unit coordinators objects, where we define our unit coordinators
         unit_coordinators_data = [
             {
                 'username': 'unit_coordinator',
                 'password': 'password',
-                'first_name': 'group',
-                'last_name': 'eleven',
+                'first_name': 'Group',
+                'last_name': 'Eleven',
                 'email': 'unitcoordinator@gmail.com',
                 'date_joined': timezone.now(),
                 'user_type': 'unit_coordinator'

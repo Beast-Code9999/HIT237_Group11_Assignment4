@@ -20,9 +20,22 @@
                 {% endfor %}
             </p>
             <p><strong>Topic Number:</strong> {{ project.topic_num }}</p>
-            <p><strong>Thesis Supervisor:</strong> {{ project.supervisor }}</p>
-            <p><strong>Locations:</strong> {{ project.location }}</p>
-            <p><strong>Fields:</strong> {{ project.research_areas }}</p>
+            <p><strong>Thesis Supervisor:</strong> {{ project.supervisor.first_name }} {{ project.supervisor.last_name }}</p>
+            <p><strong>Locations:</strong>
+                {% for location in project.location.all %}
+                    {{ location.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    None
+                {% endfor %}
+                </p>
+                
+                <p><strong>Fields:</strong>
+                {% for research_area in project.research_areas.all %}
+                    {{ research_area.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    None
+                {% endfor %}
+                </p>
             <p><strong>Description: </strong> {{ project.description|linebreaks }}</p>
         </div>
     </div>

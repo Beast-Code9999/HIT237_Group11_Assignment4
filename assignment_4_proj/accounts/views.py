@@ -8,31 +8,35 @@ def account_login(request):
         login_value = request.POST.get("login_value", "")
         password = request.POST.get("password", "")
 
-        print("login_value:", login_value)  # Debug: Print the login_value
-        print("password:", password)  # Debug: Print the password
+        print("login_value:", login_value)  # Print the login_value
+        print("password:", password)  # Print the password
 
         User_model = get_user_model()
         user = User_model.objects.filter(username=login_value).first()
-        print("user (by username):", user)  # Debug: Print the user object (if found by username)
+        print("user (by username):", user)  # Print the user object (if found by username)
 
         if not user:
             user = User_model.objects.filter(email=login_value).first()
-            print("user (by email):", user)  # Debug: Print the user object (if found by email)
+            print("user (by email):", user)  # Print the user object (if found by email)
 
         if user:
-            # Check if user is active
+            # Check if user is active or not, if not redirect back to login page
             if not user.is_active:
-                print("User is not active.")
-                messages.error(request, "This account is inactive.")
+                print("This user is not active unforunately")
+                messages.error(request, "Inactive account.")
                 return redirect("account-login")
 
             # Authenticate user
             authenticated_user = authenticate(request, username=user.username, password=password)
-            print("authenticated user:", authenticated_user)  # Debug: Print the authenticated user object
+            print("authenticated user:", authenticated_user)  # Print the authenticated user object
 
+            # if user is active and not none
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                return redirect("management-index")
+                if authenticated_user.user_type == 'student':
+                    return redirect("home")  # if its a student, then redirects back to homepage 
+                else:
+                    return redirect("management-index")  # if its another group such as supervisor or unit_coordinator, go to management-index
 
         messages.error(request, "Invalid username/email or password. Try again.")
         return redirect("account-login")
