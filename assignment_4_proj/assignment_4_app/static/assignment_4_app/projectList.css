@@ -1,9 +1,16 @@
+:root {
+    --color-primary: #3C558B;
+    --color-secondary: white;
+    --color-dark-blue: #1c0e45;
+    --color-grey: #eff0f8;
+    --color-text-dark: #182620;
+}
+
 .container {
     width: 100rem;
-    /* width: 96%; */
     margin: auto;
     padding: 20px;
-    background-color: black;
+    background-color: var(--color-secondary);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transform: scale(0.9);
 }
@@ -54,4 +61,34 @@
 
 .project strong {
     color: #333;
+}
+
+/* search bar */
+
+.search-button img {
+    width: 20px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.search-button,
+.search-bar {
+    height: 40px;
+    border-radius: 30px;
+    border: 0px;
+    background-color: var(--color-secondary);
+}
+
+.search-bar {
+    width: 85rem;
+    padding: 10px 20px;
+}
+
+.search-button {
+    width: 5rem;
+    padding: 10px;
 }

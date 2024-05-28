@@ -26,7 +26,10 @@
          
         <section class="section--pending">
              {% comment %} forms for student application pending approval {% endcomment %}
-            Section Pending
+             
+             <a href="{% url "project-pendings" %}">
+                 Section Pending
+            </a>
         </section>
          
         {% if user.is_authenticated %}
