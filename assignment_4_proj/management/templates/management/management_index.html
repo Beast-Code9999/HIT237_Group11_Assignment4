@@ -9,7 +9,39 @@
 
 
 {% block content %}
+<<<<<<< HEAD
 <div class="main2">
+=======
+{% if user.is_authenticated %}
+    {% if user.user_type == 'unit_coordinator' or user.user_type == "supervisor" %}
+        <!-- Content for unit coordinators -->
+        <p>Welcome back, {{ user.first_name }} {{ user.last_name }}</p>
+        <section class="title">
+            <h1>Management and Administration</h1>
+        </section>
+         
+        <section class="section--thesis-management">
+             {% comment %} Where CRUD functionality will be used {% endcomment %}
+            <a href="{% url "manage-project" %}">
+                Manage projects
+            </a>
+        </section>
+         
+        <section class="section--pending">
+             {% comment %} forms for student application pending approval {% endcomment %}
+             
+             <a href="{% url "project-pendings" %}">
+                 Section Pending
+            </a>
+        </section>
+         
+        {% if user.is_authenticated %}
+            {% if user.user_type == "unit_coordinator" %}
+                <section class="section--user-management">
+                    {% comment %} display a list of all users {% endcomment %}
+                    User management
+                </section>
+>>>>>>> eba311af1aa885797f709c293bbb3b1b92c6c170
 
     {% if user.is_authenticated %}
         {% if user.user_type == 'unit_coordinator' or user.user_type == "supervisor" %}
