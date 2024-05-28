@@ -24,6 +24,8 @@ def manage_project(request):
 
     return render(request, "management/management_project.html", context)
 
+@login_required
+@user_passes_test(lambda user: user.user_type in ['supervisor', 'unit_coordinator'])
 def add_project(request):
     try:
         submitted = False
@@ -43,8 +45,7 @@ def add_project(request):
                     project.supervisor = request.user  # Set the supervisor field to the current user
                     project.save()  # Save the main instance to the database
                     form.save_m2m()  # Save the many-to-many relationships
-                    submitted = True  # Set submitted to True after successful form submission
-                    return HttpResponseRedirect(reverse('add-project') + '?submitted=True')
+                    return redirect("project-pendings")
                 else: 
                     return HttpResponse("Project already exist")
         else:
@@ -98,7 +99,20 @@ def approve_project_request(request, slug):
 @login_required
 @user_passes_test(lambda user: user.user_type in ['unit_coordinator'])
 def reject_project_request(request, slug):
-    project_request = get_object_or_404(Project, topic_num=slug)
+    project_request = get_object_or_404(RequestAdd, topic_num=slug)
+    if request.method == "POST":
+        project_request.status = "Rejected"
+        project_request.save()
+
+        project_request.delete() # again, currently deleting the object right away, this can be changed in the future
+        return redirect("project-pendings")
+    else:
+        context = {
+            "project_request": project_request
+        }
+
+        return render(request, "management/management_reject_project.html", context)
+
 
 @login_required
 @user_passes_test(lambda user: user.user_type in ['supervisor','unit_coordinator'])

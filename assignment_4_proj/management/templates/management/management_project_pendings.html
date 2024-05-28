@@ -9,19 +9,82 @@
 {% endblock %}
 
 {% block content %}
-{% if project_request %}
+{% if project_requests %}
     {% if user.is_authenticated %}
         {% if user.user_type == "unit_coordinator" %}
             {% for request in project_requests %}
-                <p>{{ request.title }}: {{ request.supervisor.first_name }} {{ request.supervisor.last_name }} status: {{ request.status }}</p>
-                
+                <div class="project">
+                    <h2 class="project__heading">{{ request.title }}</h2>
+                    <p class="project__paragraph"><strong>Category:</strong>
+                        {% if request.category.exists %}
+                            {% for category in request.category.all %}
+                                {{ category.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p class="project__paragraph"><strong>Topic Number:</strong> {{ request.topic_num }}</p>
+                    <p class="project__paragraph"><strong>Thesis Supervisor:</strong> {{ request.supervisor.first_name }} {{ request.supervisor.last_name }}</p>
+                    <p class="project__paragraph"><strong>Locations:</strong>
+                        {% if request.location.exists %}
+                            {% for location in request.location.all %}
+                                {{ location.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p class="project__paragraph"><strong>Fields:</strong>
+                        {% if request.research_areas.exists %}
+                            {% for research_area in request.research_areas.all %}
+                                {{ research_area.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p class="project__paragraph"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
+                </div>
                 <a href="{% url "approve-project-request" request.topic_num %}">Approve</a>
                 <a href="{% url "reject-project-request" request.topic_num %}">Reject</a>
             {% endfor %}
         {% endif %}
         {% if user.user_type == "supervisor" %}
             {% for request in project_requests %}
-                <p>{{ request.title }}: {{ request.supervisor.first_name }} {{ request.supervisor.last_name }} status: {{ request.status }}</p>
+                <div class="project">
+                    <h2 class="project__heading">{{ request.title }}</h2>
+                    <p class="project__paragraph"><strong>Category:</strong>
+                        {% if request.category.exists %}
+                            {% for category in request.category.all %}
+                                {{ category.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p class="project__paragraph"><strong>Topic Number:</strong> {{ request.topic_num }}</p>
+                    <p class="project__paragraph"><strong>Thesis Supervisor:</strong> {{ request.supervisor.first_name }} {{ request.supervisor.last_name }}</p>
+                    <p class="project__paragraph"><strong>Locations:</strong>
+                        {% if request.location.exists %}
+                            {% for location in request.location.all %}
+                                {{ location.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p class="project__paragraph"><strong>Fields:</strong>
+                        {% if request.research_areas.exists %}
+                            {% for research_area in request.research_areas.all %}
+                                {{ research_area.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                    <p class="project__paragraph"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
+                </div>
             {% endfor %}
         {% endif %}
     {% endif %}
