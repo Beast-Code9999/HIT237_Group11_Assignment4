@@ -49,7 +49,6 @@ class RequestAddForm(ModelForm):
             "description": forms.Textarea(attrs={'class':'textarea'}),
         }
 
-        
 
 
 class ProjectChangeRequestForm(ModelForm):

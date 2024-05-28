@@ -1,0 +1,55 @@
+
+{% extends "management/management_base.html" %}
+{% load static %}
+
+{% block title %} Approve Project Request {% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "management/.css"%}">
+{% endblock %}
+
+{% block content %}
+{% if project_request %}
+    <div class="project">
+        <h2 class="project__heading">{{ project_request.title }}</h2>
+        <p class="project__paragraph"><strong>Category:</strong>
+            {% if project_request.category.exists %}
+                {% for category in project_request.category.all %}
+                    {{ category.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </p>
+        <p class="project__paragraph"><strong>Topic Number:</strong> {{ project_request.topic_num }}</p>
+        <p class="project__paragraph"><strong>Thesis Supervisor:</strong> {{ project_request.supervisor.first_name }} {{ project_request.supervisor.last_name }}</p>
+        <p class="project__paragraph"><strong>Locations:</strong>
+            {% if project_request.location.exists %}
+                {% for location in project_request.location.all %}
+                    {{ location.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </p>
+        <p class="project__paragraph"><strong>Fields:</strong>
+            {% if project_request.research_areas.exists %}
+                {% for research_area in project_request.research_areas.all %}
+                    {{ research_area.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </p>
+        <p class="project__paragraph"><strong>Description: </strong> {{ project_request.description|linebreaks }}</p>
+    </div>
+
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit">Approve</button>
+    </form>
+{% else %}
+    <h2>There are currently no projects pending!</h2>
+{% endif %}
+{% endblock content %}

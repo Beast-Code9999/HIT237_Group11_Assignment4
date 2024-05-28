@@ -49,7 +49,7 @@ class ResearchArea(models.Model):
     def __str__(self):
         return self.name
 
-class RequestAdd():
+class RequestAdd(models.Model):
     supervisor = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=100, null=True)
     category = models.ManyToManyField("Category", blank=True)
@@ -63,6 +63,8 @@ class RequestAdd():
 
     def __str__(self):
         return self.title + ", Status: " + str(self.status)
+    
+    
 
 # class RequestUpdate():
 #     pass

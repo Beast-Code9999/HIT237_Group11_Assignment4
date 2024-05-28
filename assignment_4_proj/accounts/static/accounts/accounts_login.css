@@ -1,8 +1,8 @@
 :root {
     --color-primary: #3C558B;
     --color-secondary: white;
-    --color-dark-blue: #4d5c76;
-    --color-grey: #e7e7e7;
+    --color-dark-blue: #1c0e45;
+    --color-grey: #eff0f8;
     --color-text-dark: #182620;
 }
 
@@ -11,7 +11,6 @@ html {
 }
 
 body {
-    background-color: var(--color-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +26,7 @@ body {
     justify-content: center;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     gap: 30px 0px;
+
 }
 
 img {
@@ -35,8 +35,8 @@ img {
 }
 
 form {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
+    background-color: var(--color-grey);
+    color: var(--color-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,7 +65,7 @@ form {
 }
 .submit:hover {
     background-color: var(--color-secondary);
-    color: rgb(25, 25, 67);
+    color: #191943;
 }
 
 .login,

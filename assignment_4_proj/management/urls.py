@@ -14,4 +14,7 @@ urlpatterns = [
     re_path(r"^update-project/(?P<slug>\d+)$", views.update_project, name="update-project"),
     re_path(r"^delete-project/(?P<slug>\d+)$", views.delete_project, name="delete-project"),
     path("project-csv/", views.project_csv, name="project-csv"),
+    path("project-pendings/", views.project_request_list, name="project-pendings"),
+    path("project-pendings/approve/<slug>", views.approve_project_request, name="approve-project-request"),
+    path("project-pendings/reject/<slug>", views.reject_project_request, name="reject-project-request"),
 ]

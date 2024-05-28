@@ -14,13 +14,12 @@
 <section class="title">
    <h1>About This Website</h1>
 </section>
-<br><br>
 
 <div class="search-container">
     <form action="{% url "search" %}" method="POST">
         {% csrf_token %}
-        <input type="search" placeholder="Search thesis" name="searched" class="search-bar">
-        <button type="submit" class="search-button">Search</button>
+        <input type="search" placeholder="      Search thesis" name="searched" class="search-bar">
+        <button type="submit" class="search-button"><img src="{% static "assignment_4_app/img/search-icon.png" %}" alt="Search icon"></button>
     </form>
 </div>
 <br><br>

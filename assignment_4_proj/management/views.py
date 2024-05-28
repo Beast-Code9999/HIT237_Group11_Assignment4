@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from .models import Project, ProjectChangeRequest
-from .forms import ProjectForm, ProjectChangeRequest, SupervisorProjectForm
+from .models import Project, ProjectChangeRequest, RequestAdd
+from .forms import ProjectForm, ProjectChangeRequest, SupervisorProjectForm, RequestAddForm
 from django.db.models import Q
 import csv
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
+from django.utils import timezone
 
 
 # Create your views here.
@@ -36,7 +37,7 @@ def add_project(request):
                 else: 
                     return HttpResponse("Project already exist")
             else: # else save restricted form (no supervisor field)
-                form = SupervisorProjectForm(request.POST)
+                form = RequestAddForm(request.POST)
                 if form.is_valid():
                     project = form.save(commit=False)  # Save the form without committing to the database
                     project.supervisor = request.user  # Set the supervisor field to the current user
@@ -50,10 +51,11 @@ def add_project(request):
             if request.user.user_type in ["unit_coordinator"]:
                 form = ProjectForm
             else:
-                form = SupervisorProjectForm
+                form = RequestAddForm
 
             if 'submitted' in request.GET:
                 submitted = True
+
             context = {
                 "form": form,
                 "submitted": submitted,
@@ -61,6 +63,56 @@ def add_project(request):
             return render(request, "management/addProject.html", context)
     except:
         return HttpResponseNotFound("This link is not supported")
+    
+@login_required
+@user_passes_test(lambda user: user.user_type in ['unit_coordinator'])
+def approve_project_request(request, slug):
+    project_request = get_object_or_404(RequestAdd, topic_num=slug)
+    if request.method == "POST":
+        project_request.status = "Approved"
+        project_request.approved_at = timezone.now()
+        project_request.save()
+
+        # Create a new Project from the approved request
+        project = Project.objects.create(
+            supervisor=project_request.supervisor,
+            title=project_request.title,
+            topic_num=project_request.topic_num,
+            description=project_request.description
+        )
+        project.category.set(project_request.category.all())
+        project.location.set(project_request.location.all())
+        project.research_areas.set(project_request.research_areas.all())
+        project.save()
+
+        project_request.delete() # currently saved project_request is immediately deleted, but this can be stored elsewhere in the future instead of being deleted right away
+
+        return redirect('project-pendings')
+    else: 
+        context = {
+            "project_request": project_request
+        }
+
+        return render(request, "management/management_approve_project.html", context)
+
+@login_required
+@user_passes_test(lambda user: user.user_type in ['unit_coordinator'])
+def reject_project_request(request, slug):
+    project_request = get_object_or_404(Project, topic_num=slug)
+
+@login_required
+@user_passes_test(lambda user: user.user_type in ['supervisor','unit_coordinator'])
+def project_request_list(request):
+    project_requests = RequestAdd.objects.filter(status="pending")
+
+    context = {
+        "project_requests": project_requests
+    }
+    
+    return render(request, "management/management_project_pendings.html", context)
+
+
+
 
 def update_project(request, slug):
     try:

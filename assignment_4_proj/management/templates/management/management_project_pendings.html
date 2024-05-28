@@ -1,0 +1,31 @@
+
+{% extends "management/management_base.html" %}
+{% load static %}
+
+{% block title %} Project requests {% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "management/.css"%}">
+{% endblock %}
+
+{% block content %}
+{% if project_request %}
+    {% if user.is_authenticated %}
+        {% if user.user_type == "unit_coordinator" %}
+            {% for request in project_requests %}
+                <p>{{ request.title }}: {{ request.supervisor.first_name }} {{ request.supervisor.last_name }} status: {{ request.status }}</p>
+                
+                <a href="{% url "approve-project-request" request.topic_num %}">Approve</a>
+                <a href="{% url "reject-project-request" request.topic_num %}">Reject</a>
+            {% endfor %}
+        {% endif %}
+        {% if user.user_type == "supervisor" %}
+            {% for request in project_requests %}
+                <p>{{ request.title }}: {{ request.supervisor.first_name }} {{ request.supervisor.last_name }} status: {{ request.status }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{% else %}
+    <h2>There are currently no project pendings!</h2>
+{% endif %}
+{% endblock content %}

@@ -22,6 +22,7 @@
                 <li class="navigation__item"><a class="link" href="{% url 'project-list' %}">Projects</a></li>
                 {% if user.is_authenticated %}
                     {% if user.user_type == "supervisor" or user.user_type == "unit_coordinator" %}
+                        <li class="navigation__item"><a class="link" href="{% url "management-index" %}">Management</a></li>
                         <li class="navigation__item"><a class="link" href="{% url "account-logout" %}">Logout</a></li>
                     {% endif %}
                 {% else %}
