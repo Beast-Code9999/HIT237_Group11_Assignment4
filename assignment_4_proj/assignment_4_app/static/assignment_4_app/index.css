@@ -39,4 +39,6 @@
 .search-button img {
     width: 20px;
 }
-
+.search-button:hover {
+    cursor: pointer;
+}

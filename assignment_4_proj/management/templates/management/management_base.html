@@ -13,7 +13,7 @@
     <header class="header">
         <a class="link" href="{% url 'home' %}">
             <div class="header__logo">
-                <img class="header__img" src="{% static "img/CDU-Logo2.png" %}" alt="Group 11 Logo">
+                <img class="header__img" src="{% static "img/cdu-logo.png" %}" alt="Group 11 Logo">
                 <div>CDU</div>
             </div>
         </a>
@@ -40,7 +40,8 @@
 
 
     <footer class="footer">
-        <div>
+
+        {% comment %} <div>
           <h2>UNIVERSITY</h2>  
           <ul>
             <li>Address:</li>
@@ -48,7 +49,39 @@
             <li>Email</li>
             <li class="navigation__item"><a class="link" href="{% url 'about' %}">About us</a></li>
           </ul>
+        </div> {% endcomment %}
+
+        <div class="first">
+            <div class="footer-container">
+                <h2>UNIVERSITY</h2>
+                <br>
+                <ul>
+                    <li><strong>Address:</strong> [University Address, City, State, Postcode]</li>
+                    <li><strong>Phone:</strong> [Main University Phone Number]</li>
+                    <li><strong>Email:</strong> info@university.edu</li>
+                </ul>
+            </div>
+            <div class="footer-container">
+                <h3>LEGAL AND COMPLIANCE</h3>
+                <ul>
+                    <li><a href="#"><strong>Privacy Policy</strong></a></li>
+                    <li><a href="#"><strong>Terms of Use</strong></a></li>
+                    <li><a href="#"><strong>Accessibility</strong></a></li>
+                    <li><a href="#"><strong>Non-Discrimination Policy</strong></a></li>
+                </ul>
+            </div>
+            <div class="footer-container">
+                <h3>QUICK LINKS</h3>
+                <li><a href="#"><strong>Admissions</strong></a></li>
+                <li><a href="#"><strong>Academics</strong></a></li>
+                <li><a href="#"><strong>Campus life</strong></a></li>
+                <li><strong><a class="link" href="{% url 'about' %}">About us</a></strong></li>
+            </div>
         </div>
+        <div class="accredition">
+            <strong><p>&copy; GROUP 11</p></strong>
+        </div>
+
     </footer>
 </body>
 </html>
