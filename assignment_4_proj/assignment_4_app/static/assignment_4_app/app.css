@@ -101,7 +101,7 @@ body {
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .social-links a img {
@@ -155,4 +155,10 @@ a {
 
 .accredition {
     font-size: 20px;
+}
+
+.research-topics-title {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 30px;
 }
