@@ -1,9 +1,11 @@
 # HIT237_Group11_Assignment4
 
 # Admin:  unit_coordinator
+# Email: unitcoordinator@gmail.com
 # Password: password
 
 # Admin: yakub_unit_coordinator
+# Email: yakubunitcoordinator@gmail.com
 # Password: yakubpassword
 
 # Supervisors
@@ -15,7 +17,7 @@ password: yakub
 - Bharanidharan
 username: bharanidharan_shanmugam
 email: bharanidharangroup11@gmail.com
-password: Bharanidharan
+password: bharanidharan
 
 - Sami
 username: sami_azam
