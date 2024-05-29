@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #3C558B;
+    --color-primary: #3c558b;
     --color-secondary: white;
     --color-dark-blue: #1c0e45;
     --color-grey: #eff0f8;
@@ -53,3 +53,37 @@
     margin-bottom: 1rem;
     font-size: 2.5rem;
 }
+
+.container {
+
+}
+
+.section {
+    padding: 2rem;
+}
+
+.section:nth-child(2n + 1) {
+    height: 4rem;
+    padding: .5rem 2rem;
+}
+
+.project {
+    padding: 1rem;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+section > .link {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+
+.link__update {
+    background-color: lightgreen;
+    margin-right: 1rem;
+}
+
+.link__delete {
+    background-color: lightcoral;
+}
+
