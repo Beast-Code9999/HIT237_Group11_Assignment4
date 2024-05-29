@@ -10,11 +10,11 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="research-topics-title">Manage Theses</h1>
+    <h1 class="research-topics-title">Manage Thesis</h1>
     {% if submitted  %}
-        <p>Project Submitted Successfully!</p>
-        <a class="link__homepage" href="{% url "manage-project" %}">return to manage project</a>
-        <a class="link__add-project" href="{% url "add-project" %}">add another thesis</a>
+        <p class="add-success">Project Submitted Successfully!</p>
+        <p class="link-container"><a class="link__add-project" href="{% url "add-project" %}">add another thesis &#187;</a></p>
+        <p class="link-container"><a class="link__homepage" href="{% url "manage-project" %}">return to manage project &#187;</a></p>
         
     {% else %}
         <form class="add-form" action="" method="POST">
