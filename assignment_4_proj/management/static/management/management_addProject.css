@@ -1,0 +1,19 @@
+
+
+.add-form {
+    margin-bottom: 2rem;
+}
+
+.btn-submit {
+    background-color: lightgreen;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+.btn-submit:hover {
+    cursor: pointer;
+}
+
+.link-return {
+    font-size: 2rem;
+}

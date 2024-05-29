@@ -5,7 +5,7 @@
 {% block title %} Manage Project Theses {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "management/addProject.css"%}">
+    <link rel="stylesheet" href="{% static "management/management_addProject.css"%}">
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         <a class="link__add-project" href="{% url "add-project" %}">add another thesis</a>
         
     {% else %}
-        <form action="" method="POST">
+        <form class="add-form" action="" method="POST">
             {% csrf_token %}
 
             {{ form.as_p }}
@@ -25,7 +25,7 @@
             <input type="submit" value="submit" class="btn btn-submit">
         </form>
 
-        <a href="{% url "manage-project" %}">return to manage project</a>
+        <a class="link-return" href="{% url "manage-project" %}">return to manage project</a>
     {% endif %}
 </div>
 {% endblock content %}
