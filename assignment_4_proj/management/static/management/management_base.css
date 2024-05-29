@@ -96,3 +96,8 @@ a:hover {
 .footer-container li {
     margin-bottom: 3px;
 }
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
