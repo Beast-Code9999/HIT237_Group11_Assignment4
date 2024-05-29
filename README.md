@@ -3,6 +3,44 @@
 # Admin:  unit_coordinator
 # Password: password
 
+# Admin: yakub_unit_coordinator
+# Password: yakubpassword
+
+# Supervisors
+- Yakub
+username: yakub_sebastian
+email: yakubgroup11@gmail.com
+password: yakub
+
+- Bharanidharan
+username: bharanidharan_shanmugam
+email: bharanidharangroup11@gmail.com
+password: Bharanidharan
+
+- Sami
+username: sami_azam
+email: samigroup11@gmail.com
+password: sami
+
+- Asif
+username: asif_karim
+email: asifgroup11@gmail.com
+password: asif
+
+
+# Students
+- Jason
+username: jason_lay
+email: jasonlayStudent@gmail.com
+password: jasonpassword
+
+- Micia
+username: micia_gusmao
+email: miciagusmaoStudent@gmail.com
+password: miciapassword
+
+NOTE: 
+
 project
 |_accounts
 |    |_management
