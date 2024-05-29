@@ -62,9 +62,10 @@
     padding: 2rem;
 }
 
-.section:nth-child(2n + 1) {
+.section__link {
     height: 4rem;
     padding: .5rem 2rem;
+    background-color: white;
 }
 
 .project {
