@@ -47,10 +47,13 @@
                     <p class="project__paragraph"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
                 </div>
                 
-                <a href="{% url "update-pending-project" request.topic_num %}">Update pending request</a>
-                <a href="{% url "delete-pending-project" request.topic_num %}">Delete pending request</a>
-                <a href="{% url "approve-project-request" request.topic_num %}">Approve</a>
-                <a href="{% url "reject-project-request" request.topic_num %}">Reject</a>
+                <a class="update-pending-request" href="{% url "update-pending-project" request.topic_num %}">Update pending request</a>
+                <a class="delete-pending-request" href="{% url "delete-pending-project" request.topic_num %}">Delete pending request</a>
+                <a class="approve-pending" href="{% url "approve-project-request" request.topic_num %}">Approve</a>
+                <a class="reject-pending" href="{% url "reject-project-request" request.topic_num %}">Reject</a>
+                <br>
+                <br>
+                <br>
             {% endfor %}
         {% endif %}
         {% if user.user_type == "supervisor" %}
@@ -86,10 +89,11 @@
                             None
                         {% endif %}
                     </p>
-                    <p class="project__paragraph"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
+                    <p class="project__paragraph project__paragraph--description"><strong>Description: </strong> {{ request.description|linebreaks }}</p>
+                    <br>
                     {% if user == request.supervisor  %}
-                        <a href="{% url "update-pending-project" request.topic_num %}">Update pending request</a>
-                        <a href="{% url "delete-pending-project" request.topic_num %}">Delete pending request</a>
+                        <a class="update-pending-request" href="{% url "update-pending-project" request.topic_num %}">Update pending request</a>
+                        <a class="delete-pending-request" href="{% url "delete-pending-project" request.topic_num %}">Delete pending request</a>
                     {% endif %}
                 </div>
             {% endfor %}

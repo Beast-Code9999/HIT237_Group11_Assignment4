@@ -82,9 +82,11 @@ section > .link {
 .link__update {
     background-color: lightgreen;
     margin-right: 1rem;
+    color: black;
 }
 
 .link__delete {
     background-color: lightcoral;
+    color: black;
 }
 

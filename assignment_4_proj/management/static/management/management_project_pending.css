@@ -18,6 +18,28 @@ p {
     margin-bottom: .5rem;
 }
 
+
 .container__link-return {
     margin-top: 2rem;
+}
+
+.update-pending-request,
+.delete-pending-request,
+.approve-pending,
+.reject-pending {
+    margin-right: .5rem;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    color: black;
+    border: none;
+}
+
+.update-pending-request,
+.approve-pending {
+    background-color: lightgreen;
+}
+
+.reject-pending,
+.delete-pending-request {
+    background-color: lightcoral;
 }
