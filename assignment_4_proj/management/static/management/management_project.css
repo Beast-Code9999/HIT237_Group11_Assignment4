@@ -10,3 +10,47 @@
     background-color: var(--color-secondary);
 }
 
+.main {
+    width: 100%;
+    height: auto;
+}
+
+.download-csv {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    background-color: #1c1041;
+    color: white;
+}
+.download-csv:hover {
+    filter: brightness(1.2);
+}
+
+.add {
+    margin-top: 4rem;
+}
+
+.add > h1 {
+    margin-bottom: 2rem;
+}
+
+.add > a {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    background-color: #1c1041;
+    color: white;
+}
+
+.add > a:hover {
+    filter: brightness(1.2);
+}
+
+
+.unit_coordinator {
+    margin-top: 4rem;
+}
+
+.unit_coordinator > h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+
+}

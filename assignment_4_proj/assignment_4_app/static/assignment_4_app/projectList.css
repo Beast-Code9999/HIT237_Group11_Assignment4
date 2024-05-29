@@ -83,6 +83,10 @@
     background-color: var(--color-secondary);
 }
 
+.search-button {
+    transform: translateY(6px);
+}
+
 .search-bar {
     width: 85rem;
     padding: 10px 20px;

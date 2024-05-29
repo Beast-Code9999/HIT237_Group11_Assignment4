@@ -18,6 +18,13 @@
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.03);
 }
 
+/* current two active links */
+.section--thesis-management > a, 
+.section--pending > a {
+    color: #4e2185 !important;
+    text-decoration: none;
+}
+
 .section--thesis-management a {
     color: var(--color-text-dark);
     font-weight: bold;

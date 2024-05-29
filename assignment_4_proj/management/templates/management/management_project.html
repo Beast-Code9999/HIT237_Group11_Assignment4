@@ -13,13 +13,13 @@
 
 {% if user.is_authenticated  %}
     {% if user.user_type == "unit_coordinator" or user.user_type == "supervisor" %}
-        <a href="{% url "project-csv" %}">Download all thesis topics</a>
+        <a class="download-csv" href="{% url "project-csv" %}">Download all thesis topics</a>
         <section class="add">
             <h1>Adding Thesis</h1>
             <a href="{% url "add-project" %}">Add a thesis</a>
         </section>
         <section class="unit_coordinator">
-            <h1 class="container__heading">Research Topic</h1>
+            <h1 class="container__heading">Research Topics</h1>
             {% for project in projects %}
                 <section class="section">
                     <div class="container">
