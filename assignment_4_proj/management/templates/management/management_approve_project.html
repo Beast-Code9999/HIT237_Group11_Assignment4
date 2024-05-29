@@ -5,7 +5,7 @@
 {% block title %} Approve Project Request {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "management/.css"%}">
+    <link rel="stylesheet" href="{% static "management/management_approve_project.css"%}">
 {% endblock %}
 
 {% block content %}
@@ -47,7 +47,7 @@
 
     <form action="" method="POST">
         {% csrf_token %}
-        <button type="submit">Approve</button>
+        <button class="appove-button" type="submit">Approve</button>
     </form>
 {% else %}
     <h2>There are currently no projects pending!</h2>

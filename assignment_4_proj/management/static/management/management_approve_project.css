@@ -1,0 +1,35 @@
+
+
+.project {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.project__heading {
+    margin-bottom: 1rem;
+}
+.project__paragraph {
+    margin-bottom: .5rem;
+}
+
+.appove-button {
+    background-color: green;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: none;
+}
+.appove-button:hover,
+.reject-button:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+.reject-button {
+    background-color: red;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    border: none;
+}

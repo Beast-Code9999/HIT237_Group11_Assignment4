@@ -5,7 +5,7 @@
 {% block title %} Update Project Theses {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "management/management_updateProject.css"%}">
+    <link rel="stylesheet" href="{% static "management/management_addProject.css"%}">
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
         
-                <input type="submit" value="update">
+                <input class="update-success" type="submit" value="update">
             </form>
         </div>
 
