@@ -63,3 +63,5 @@ Tried to use pip install django-moderation to moderate two django objects (Proje
 - limitation: Does not support many-to-many relationships
 
 Project inheritance was later found to be useful
+
+django turns out to be very efficient
